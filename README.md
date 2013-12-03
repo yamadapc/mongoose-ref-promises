@@ -55,7 +55,7 @@ or
 ```javascript
 // [...]
 user.bffP
-  .then(function(friends) {
+  .then(function(best_friend_forever) {
     // [...]
   });
 ```
