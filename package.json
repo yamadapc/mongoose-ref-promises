@@ -29,6 +29,7 @@
   "devDependencies": {
     "mongoose": "3.8.*",
     "mongoose-bluebird-utils": "*",
+    "bluebird": "0.10.*",
     "mocha": "latest",
     "should": "latest"
   }
