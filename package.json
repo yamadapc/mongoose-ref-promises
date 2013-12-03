@@ -1,0 +1,35 @@
+{
+  "name": "mongoose-ref-promises",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "description": "A mongoose plugin which adds promise-based population virtual properties to your Models",
+  "homepage": "https://github.com/yamadapc/mongoose-ref-promises",
+  "bugs": "https://github.com/yamadapc/mongoose-ref-promises/issues",
+  "author": {
+    "name": "Pedro Yamada",
+    "email": "tacla.yamada@gmail.com",
+    "url": "github.com/yamadapc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yamadapc/mongoose-ref-promises"
+  },
+  "licenses": [{ "type": "MIT" }],
+  "scripts": {
+    "test": "mocha -R spec test/*.test.js"
+  },
+
+  "dependencies": {
+    "underscore": "1.5.2"
+  },
+  "peerDependencies": {
+    "mongoose": "*",
+    "mongoose-bluebird-utils": "*"
+  },
+  "devDependencies": {
+    "mongoose": "3.8.*",
+    "mongoose-bluebird-utils": "*",
+    "mocha": "latest",
+    "should": "latest"
+  }
+}
