@@ -20,7 +20,7 @@
   },
 
   "dependencies": {
-    "underscore": "1.5.2"
+    "lodash": "~2.4"
   },
   "peerDependencies": {
     "mongoose": "*",
