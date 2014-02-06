@@ -61,6 +61,17 @@ describe('mongoose-ref-promises', function() {
   describe('when accesssing a array of references\' query promise', function() {
     var promise;
 
+    it('doesn\'t reject if the array is empty', function(done) {
+      var friends = user1.friends;
+      user1.friends = [];
+      user1.friendsP
+        .then(function(a) {
+          a.length.should.equal(0);
+          user1.friends = friends;
+          done();
+        }, done);
+    });
+
     it('should pass on a promise', function() {
       promise = user1.friendsP;
       promise.then.should.be.instanceof(Function);
