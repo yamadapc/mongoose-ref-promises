@@ -86,8 +86,8 @@ describe('mongoose-ref-promises', function() {
           f.should.be.instanceof(User);
           return f.id;
         });
-        ids.should.include(user2.id);
-        ids.should.include(user3.id);
+        ids.should.containEql(user2.id);
+        ids.should.containEql(user3.id);
       }).nodeify(done);
     });
   });
