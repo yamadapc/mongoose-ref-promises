@@ -2,3 +2,6 @@ services: mongodb
 language: node_js
 node_js:
   - '0.10'
+after_script:
+  - npm install coveralls
+  - ./node_modules/coveralls/bin/coveralls.js < lcov
