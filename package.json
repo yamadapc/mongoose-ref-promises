@@ -32,6 +32,9 @@
     "bluebird": "^2.3.2",
     "lodash": "~2.4"
   },
+  "peerDependencies": {
+    "mongoose": "^3.8.0"
+  },
   "devDependencies": {
     "blanket": "^1.1.6",
     "mocha": "^1.21.4",

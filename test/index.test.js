@@ -45,25 +45,10 @@ describe('mongoose-ref-promises', function() {
   });
 
   describe('when using ref-promises with a non-promisified model', function() {
-    before(function() {
-      var _this = this;
-      this.console$error = console.error;
-      console.error = function() {
-        _this.called = true;
-      };
-    });
-
     it('doesn\'t throw', function() {
-      should.not.exist(Test.findByIdAsync);
       var p = user1.testP;
-      should.exist(Test.findByIdAsync);
       should.exist(p);
       should.exist(p.then);
-      this.called.should.equal(true);
-    });
-
-    after(function() {
-      console.error = this.console$error;
     });
   });
 
