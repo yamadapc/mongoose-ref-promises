@@ -2,6 +2,9 @@ mongoose-ref-promises
 =====================
 [![Build Status](https://secure.travis-ci.org/yamadapc/mongoose-ref-promises.png?branch=master)](http://travis-ci.org/yamadapc/mongoose-ref-promises)
 [![Code Climate](https://codeclimate.com/github/yamadapc/mongoose-ref-promises.png)](https://codeclimate.com/github/yamadapc/mongoose-ref-promises)
+[![Coverage Status](https://coveralls.io/repos/yamadapc/mongoose-ref-promises/badge.png)](https://coveralls.io/r/yamadapc/mongoose-ref-promises)
+[![Dependency Status](https://david-dm.org/yamadapc/mongoose-ref-promises.svg)](https://david-dm.org/yamadapc/mongoose-ref-promises)
+[![devDependency Status](https://david-dm.org/yamadapc/mongoose-ref-promises/dev-status.svg)](https://david-dm.org/yamadapc/mongoose-ref-promises#info=devDependencies)
 [![Analytics](https://ga-beacon.appspot.com/UA-54450544-1/mongoose-ref-promises/README)](https://github.com/igrigorik/ga-beacon)
 - - -
 A mongoose plugin which adds promise-based population virtual properties to your
