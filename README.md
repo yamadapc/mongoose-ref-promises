@@ -68,4 +68,4 @@ user.bffP
 ```
 
 ## License
-Copyright (c) 2013 Pedro Yamada. Licensed under the MIT license.
+Copyright (c) 2014 Pedro Yamada. Licensed under the MIT license.
