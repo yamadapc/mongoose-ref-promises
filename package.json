@@ -5,7 +5,12 @@
   "description": "A mongoose plugin which adds promise-based population virtual properties to your Models",
   "homepage": "https://github.com/yamadapc/mongoose-ref-promises",
   "bugs": "https://github.com/yamadapc/mongoose-ref-promises/issues",
-  "keywords": [ "mongoose", "promises", "references", "relations" ],
+  "keywords": [
+    "mongoose",
+    "promises",
+    "references",
+    "relations"
+  ],
   "author": {
     "name": "Pedro Yamada",
     "email": "tacla.yamada@gmail.com",
@@ -15,23 +20,36 @@
     "type": "git",
     "url": "https://github.com/yamadapc/mongoose-ref-promises"
   },
-  "licenses": [{ "type": "MIT" }],
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
   "scripts": {
-    "test": "mocha -R spec test/*.test.js"
+    "test": "mocha -R mocha-spec-cov-alt --require blanket test/*.test.js"
   },
-
   "dependencies": {
-    "lodash": "~2.4",
-    "bluebird": "0.10.*"
-  },
-  "peerDependencies": {
-    "mongoose-bluebird-utils": "*"
+    "bluebird": "^2.3.2",
+    "lodash": "~2.4"
   },
   "devDependencies": {
+    "blanket": "^1.1.6",
+    "mocha": "^1.21.4",
+    "mocha-spec-cov-alt": "^0.1.1",
     "mongoose": "3.8.*",
-    "mongoose-bluebird-utils": "*",
-    "bluebird": "0.10.*",
-    "mocha": "latest",
     "should": "latest"
+  },
+  "config": {
+    "blanket": {
+      "data-cover-never": "node_modules",
+      "pattern": [
+        "lib"
+      ],
+      "spec-cov": {
+        "threshold": 80,
+        "localThreshold": 80,
+        "lcovOutput": "lcov"
+      }
+    }
   }
 }

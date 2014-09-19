@@ -1,15 +1,14 @@
-
-/**
+'use strict';
+/*!
  * Dependencies
  * --------------------------------------------------------------------------*/
 
 var Promise     = require('bluebird'),
     mongoose    = require('mongoose'),
-    mbUtils     = require('mongoose-bluebird-utils'),
     should      = require('should'),
     refPromises = require('..');
 
-var User, user1, user2, user3;
+var User, Test, user1, user2, user3;
 
 describe('mongoose-ref-promises', function() {
   // Connect to mongo
@@ -17,16 +16,20 @@ describe('mongoose-ref-promises', function() {
 
   // Register testing model
   before(function() {
+    Test = mongoose.model('Test', {});
     var UserSchema = new mongoose.Schema({
       friends:     [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
-      best_friend:  { type: mongoose.Schema.ObjectId, ref: 'User' }
+      best_friend:  { type: mongoose.Schema.ObjectId, ref: 'User' },
+      test:         { type: mongoose.Schema.ObjectId, ref: 'Test' },
     });
     UserSchema.plugin(refPromises);
     User = mongoose.model('User', UserSchema);
+    Promise.promisifyAll(User);
+    Promise.promisifyAll(User.prototype);
   });
 
   // Create testing documents
-  before(function(done) {
+  before(function() {
     user1 = new User();
     user2 = new User();
     user3 = new User();
@@ -34,11 +37,34 @@ describe('mongoose-ref-promises', function() {
     user1.friends = [user2, user3];
     user1.best_friend = user3;
 
-    Promise.join(
-      mbUtils.saveP(user1),
-      mbUtils.saveP(user2),
-      mbUtils.saveP(user3)
-    ).nodeify(done);
+    return Promise.join(
+      user1.saveAsync(),
+      user2.saveAsync(),
+      user3.saveAsync()
+    );
+  });
+
+  describe('when using ref-promises with a non-promisified model', function() {
+    before(function() {
+      var _this = this;
+      this.console$error = console.error;
+      console.error = function() {
+        _this.called = true;
+      };
+    });
+
+    it('doesn\'t throw', function() {
+      should.not.exist(Test.findByIdAsync);
+      var p = user1.testP;
+      should.exist(Test.findByIdAsync);
+      should.exist(p);
+      should.exist(p.then);
+      this.called.should.equal(true);
+    });
+
+    after(function() {
+      console.error = this.console$error;
+    });
   });
 
   describe('when accessing a unitary reference\'s query promise', function() {
@@ -49,27 +75,26 @@ describe('mongoose-ref-promises', function() {
       promise.then.should.be.instanceof(Function);
     });
 
-    it('should pass on a promise which resolves to the query\'s expected result', function(done) {
-      promise.then(function(bf) {
+    it('should pass on a promise which resolves to the query\'s expected result', function() {
+      return promise.then(function(bf) {
         should.exist(bf);
         bf.should.be.instanceof(User);
         bf.id.should.equal(user3.id);
-      }).nodeify(done);
+      });
     });
   });
 
   describe('when accesssing a array of references\' query promise', function() {
     var promise;
 
-    it('doesn\'t reject if the array is empty', function(done) {
+    it('doesn\'t reject if the array is empty', function() {
       var friends = user1.friends;
       user1.friends = [];
-      user1.friendsP
+      return user1.friendsP
         .then(function(a) {
           a.length.should.equal(0);
           user1.friends = friends;
-          done();
-        }, done);
+        });
     });
 
     it('should pass on a promise', function() {
@@ -77,8 +102,8 @@ describe('mongoose-ref-promises', function() {
       promise.then.should.be.instanceof(Function);
     });
 
-    it('should pass on a promise which resolves to the query\'s expected result', function(done) {
-      promise.then(function(frs) {
+    it('should pass on a promise which resolves to the query\'s expected result', function() {
+      return promise.then(function(frs) {
         should.exist(frs);
         frs.should.be.instanceof(Array);
 
@@ -88,7 +113,7 @@ describe('mongoose-ref-promises', function() {
         });
         ids.should.containEql(user2.id);
         ids.should.containEql(user3.id);
-      }).nodeify(done);
+      });
     });
   });
 });
