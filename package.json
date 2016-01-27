@@ -1,6 +1,6 @@
 {
   "name": "mongoose-ref-promises",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "description": "A mongoose plugin which adds promise-based population virtual properties to your Models",
   "homepage": "https://github.com/yamadapc/mongoose-ref-promises",
