@@ -26,20 +26,18 @@
     }
   ],
   "scripts": {
-    "test": "mocha -R mocha-spec-cov-alt --require blanket test/*.test.js"
+    "test": "mocha --require blanket -R mocha-spec-cov-alt",
+    "test-html-cov": "mocha --require blanket -R html-cov > coverage.html"
   },
   "dependencies": {
-    "bluebird": "^2.3.2",
-    "lodash": "~2.4"
-  },
-  "peerDependencies": {
-    "mongoose": "^3.8.0"
+    "bluebird": "^3.1.5",
+    "lodash": "^4.0.1"
   },
   "devDependencies": {
-    "blanket": "^1.1.6",
-    "mocha": "^1.21.4",
-    "mocha-spec-cov-alt": "^0.1.1",
-    "mongoose": "3.8.*",
+    "blanket": "1.1.4",
+    "mocha": "^2.1.0",
+    "mocha-spec-cov-alt": "^1.1.0",
+    "mongoose": "^4.3.7",
     "should": "latest"
   },
   "config": {
