@@ -34,7 +34,7 @@
     "lodash": "^4.0.1"
   },
   "devDependencies": {
-    "blanket": "1.1.4",
+    "blanket": "1.2.3",
     "mocha": "^2.1.0",
     "mocha-spec-cov-alt": "^1.1.0",
     "mongoose": "^4.3.7",
