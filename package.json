@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "blanket": "1.1.4",
-    "mocha": "^2.1.0",
+    "mocha": "^2.4.5",
     "mocha-spec-cov-alt": "^1.1.0",
     "mongoose": "^4.3.7",
     "should": "latest"
